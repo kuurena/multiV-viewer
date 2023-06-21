@@ -111,13 +111,15 @@ function Test() {
   const [showButton, setShowButton] = useState(true);
 
   const url =
-    "https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/watch/spy-x-family-episode-1";
+    "https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/watch/kono-subarashii-sekai-ni-bakuen-wo-episode-11";
+  ///"https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/konosuba";
   const getData = async () => {
     try {
       const { data } = await axios.get(url);
-      console.log(data.sources);
+      console.log(data);
       setShowButton(!showButton);
       return setSource(data.sources[3].url);
+      ///return data;
     } catch (err) {
       throw new Error(err.message);
     }
