@@ -48,6 +48,7 @@ export default class TestApp extends React.PureComponent {
         <button
           className="absolute left-1 top-1 h-7 w-3 cursor-pointer rounded bg-red-400"
           onClick={this.onRemoveItem.bind(this, i)}
+          onTouchStart={this.onRemoveItem.bind(this, i)}
         ></button>
       </div>
     );

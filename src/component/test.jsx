@@ -126,7 +126,11 @@ function Test() {
   return (
     <div className="flex h-[90%] w-[90%] items-center justify-center">
       {showButton && (
-        <button onClick={getData} className="bg h-10 w-20 bg-pink-300">
+        <button
+          onClick={getData}
+          onTouchStart={getData}
+          className="bg h-10 w-20 bg-pink-300"
+        >
           Play
         </button>
       )}
