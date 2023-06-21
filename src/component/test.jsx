@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
 import "/node_modules/react-grid-layout/css/styles.css";
@@ -6,10 +6,8 @@ import "/node_modules/react-resizable/css/styles.css";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-/**
- * This layout demonstrates how to use a grid with a dynamic number of elements.
- */
-export default class AddRemoveLayout extends React.PureComponent {
+
+export default class Test extends React.PureComponent {
   static defaultProps = {
     className: "layout",
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
@@ -50,7 +48,7 @@ export default class AddRemoveLayout extends React.PureComponent {
   }
 
   onAddItem() {
-    /*eslint no-console: 0*/
+    // eslint no-console: 0
     console.log("adding", "n" + this.state.newCounter);
     this.setState({
       // Add a new item. It must have a unique key!
@@ -100,4 +98,39 @@ export default class AddRemoveLayout extends React.PureComponent {
       </div>
     );
   }
+}*/
+
+import React from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import "vidstack/styles/defaults.css";
+import { MediaOutlet, MediaPlayer } from "@vidstack/react";
+
+function Test() {
+  const [source, setSource] = useState("");
+
+  const url =
+    "https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/watch/spy-x-family-episode-1";
+  const getData = async () => {
+    try {
+      const { data } = await axios.get(url);
+      console.log(data.sources);
+      return setSource(data.sources[3].url);
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  };
+
+  return (
+    <div className="flex h-screen items-center justify-center bg-pink-200">
+      <button onClick={getData} className="h-9 w-14 bg-slate-500">
+        log
+      </button>
+      <MediaPlayer title="Test" src={source} controls>
+        <MediaOutlet />
+      </MediaPlayer>
+    </div>
+  );
 }
+
+export default Test;
