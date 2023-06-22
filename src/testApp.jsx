@@ -3,7 +3,8 @@ import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
 import "/node_modules/react-grid-layout/css/styles.css";
 import "/node_modules/react-resizable/css/styles.css";
-import Test from "./component/test";
+import AnimeSearchButton from "./component/anime-search-button";
+import AnimeSearchPage from "./component/anime-search-page";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -30,6 +31,7 @@ export default class TestApp extends React.PureComponent {
         };
       }),
       newCounter: 0,
+      openModal: false,
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -44,7 +46,14 @@ export default class TestApp extends React.PureComponent {
         data-grid={el}
         className="flex items-center justify-center bg-pink-200"
       >
-        <Test />
+        <AnimeSearchButton
+          openAnimePage={() => {
+            console.log("clicked");
+            console.log(this.state.openModal);
+            this.setState({ openModal: true });
+            console.log(this.state.openModal);
+          }}
+        />
         <button
           className="absolute left-1 top-1 h-7 w-3 cursor-pointer rounded bg-red-400"
           onClick={this.onRemoveItem.bind(this, i)}
@@ -86,23 +95,27 @@ export default class TestApp extends React.PureComponent {
 
   render() {
     return (
-      <div>
-        <div className="flex h-[5vh] justify-evenly overflow-hidden bg-slate-500">
-          <input type="text" />
-          <button
-            onClick={this.onAddItem}
-            className="h-10 w-10 rounded-[50%] bg-slate-100"
+      <>
+        {this.state.openModal && <AnimeSearchPage />}
+
+        <div>
+          <div className="flex h-[5vh] justify-evenly overflow-hidden">
+            <input type="text" />
+            <button
+              onClick={this.onAddItem}
+              className="h-10 w-10 rounded-[50%] bg-slate-800"
+            >
+              +
+            </button>
+          </div>
+          <ResponsiveReactGridLayout
+            onBreakpointChange={this.onBreakpointChange}
+            {...this.props}
           >
-            +
-          </button>
+            {_.map(this.state.items, (el) => this.createElement(el))}
+          </ResponsiveReactGridLayout>
         </div>
-        <ResponsiveReactGridLayout
-          onBreakpointChange={this.onBreakpointChange}
-          {...this.props}
-        >
-          {_.map(this.state.items, (el) => this.createElement(el))}
-        </ResponsiveReactGridLayout>
-      </div>
+      </>
     );
   }
 }

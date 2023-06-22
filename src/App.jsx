@@ -3,13 +3,11 @@ import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
 import "/node_modules/react-grid-layout/css/styles.css";
 import "/node_modules/react-resizable/css/styles.css";
+import Test from "./component/test";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-/**
- * This layout demonstrates how to use a grid with a dynamic number of elements.
- */
-export default class AddRemoveLayout extends React.PureComponent {
+export default class Grid extends React.PureComponent {
   static defaultProps = {
     className: "layout",
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
@@ -27,6 +25,7 @@ export default class AddRemoveLayout extends React.PureComponent {
           y: 0,
           w: 2,
           h: 2,
+          minH: 50,
           add: i === list.length - 1,
         };
       }),
@@ -40,10 +39,16 @@ export default class AddRemoveLayout extends React.PureComponent {
   createElement(el) {
     const i = el.i;
     return (
-      <div key={i} data-grid={el} className="bg-slate-300">
+      <div
+        key={i}
+        data-grid={el}
+        className="flex items-center justify-center bg-pink-200"
+      >
+        <Test />
         <button
-          className="absolute right-1 top-1 h-7 w-3 cursor-pointer rounded bg-red-400"
+          className="absolute left-1 top-1 h-7 w-3 cursor-pointer rounded bg-red-400"
           onClick={this.onRemoveItem.bind(this, i)}
+          onTouchStart={this.onRemoveItem.bind(this, i)}
         ></button>
       </div>
     );
