@@ -3,12 +3,25 @@ import { useState } from "react";
 import AnimeSearchPage from "./anime-search-page";
 
 function AnimeSearchButton({ openAnimePage }) {
+  const [showButton, setShowButton] = useState(true);
+  const hide = () => {
+    setShowButton(!showButton);
+  };
+
   return (
     <>
       <div>
-        <button onClick={openAnimePage} className="bg-fuchsia-300">
-          anime
-        </button>
+        {showButton && (
+          <button
+            onClick={() => {
+              openAnimePage();
+              hide();
+            }}
+            className="bg-fuchsia-300"
+          >
+            anime
+          </button>
+        )}
       </div>
     </>
   );

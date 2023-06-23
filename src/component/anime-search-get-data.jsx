@@ -4,9 +4,7 @@ import { useState, useEffect } from "react";
 import "vidstack/styles/defaults.css";
 
 function Test() {
-  const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/${
-    search - input
-  }`;
+  const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/${searchInput}`;
   const getData = async () => {
     try {
       const { data } = await axios.get(url);
