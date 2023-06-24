@@ -19,6 +19,10 @@ function AnimeCard(props) {
               selectAnimeId(id);
               animeId(id);
             }}
+            onTouchStart={() => {
+              selectAnimeId(id);
+              animeId(id);
+            }}
             className="group m-4 flex h-56 w-40 items-center justify-center overflow-hidden rounded-lg bg-slate-500 text-center"
           >
             <img

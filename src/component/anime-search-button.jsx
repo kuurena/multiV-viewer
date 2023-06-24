@@ -17,6 +17,10 @@ function AnimeSearchButton({ openAnimePage }) {
               openAnimePage();
               hide();
             }}
+            onTouchStart={() => {
+              openAnimePage();
+              hide();
+            }}
             className="bg-fuchsia-300"
           >
             anime

@@ -27,9 +27,10 @@ export default class TestApp extends React.PureComponent {
           i: i.toString(),
           x: i * 2,
           y: 0,
-          w: 2,
+          w: 3,
           h: 2,
-          minH: 50,
+          minH: 2,
+          minW: 3,
           add: i === list.length - 1,
         };
       }),
@@ -95,8 +96,10 @@ export default class TestApp extends React.PureComponent {
         i: "n" + this.state.newCounter,
         x: (this.state.items.length * 2) % (this.state.cols || 12),
         y: Infinity, // puts it at the bottom
-        w: 2,
+        w: 3,
         h: 2,
+        minW: 3,
+        minH: 2,
       }),
       // Increment the counter to ensure key is always unique.
       newCounter: this.state.newCounter + 1,
@@ -147,7 +150,7 @@ export default class TestApp extends React.PureComponent {
         )}
 
         <div>
-          <div className="flex h-[5vh] justify-evenly overflow-hidden bg-slate-100">
+          <div className="flex h-[5vh] justify-end overflow-hidden bg-pink-50/20 backdrop-blur-lg">
             <button
               onClick={this.onAddItem}
               className="h-10 w-10 rounded-[50%] bg-slate-800"

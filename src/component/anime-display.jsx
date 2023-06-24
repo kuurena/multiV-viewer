@@ -13,7 +13,6 @@ function AnimeDisplay(props) {
   const ep = props.animeEp;
 
   const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/watch/${id}-episode-${ep}`;
-  ///const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/watch/${id}-episode-1`;
 
   useEffect(() => {
     async function getData() {
