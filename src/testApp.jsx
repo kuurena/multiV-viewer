@@ -150,10 +150,11 @@ export default class TestApp extends React.PureComponent {
         )}
 
         <div>
-          <div className="flex h-[5vh] justify-end overflow-hidden bg-pink-50/20 backdrop-blur-lg">
+          <div className="flex h-[10vh] items-center justify-center drop-shadow-lg">
             <button
               onClick={this.onAddItem}
-              className="h-10 w-10 rounded-[50%] bg-slate-800"
+              className="h-10 w-32 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 drop-shadow-2xl
+               hover:scale-110 hover:bg-fuchsia-500 hover:text-fuchsia-100"
             >
               +
             </button>
