@@ -2,7 +2,7 @@ import React from "react";
 import AnimeCard from "./anime-card";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "./loading";
+import Loading from "../components/anime/loading";
 import AnimeEp from "./anime-ep";
 
 function AnimeSearchPage(props) {

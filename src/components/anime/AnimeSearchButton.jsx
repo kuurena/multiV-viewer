@@ -1,7 +1,6 @@
-import React from "react";
 import { useState } from "react";
 
-function AnimeSearchButton({ openAnimePage }) {
+function AnimeSearchButton() {
   const [showButton, setShowButton] = useState(true);
   const hide = () => {
     setShowButton(!showButton);
@@ -13,11 +12,11 @@ function AnimeSearchButton({ openAnimePage }) {
         {showButton && (
           <button
             onClick={() => {
-              openAnimePage();
+              console.log("clicked");
               hide();
             }}
             onTouchStart={() => {
-              openAnimePage();
+              console.log("clicked");
               hide();
             }}
             className="bg-fuchsia-300"

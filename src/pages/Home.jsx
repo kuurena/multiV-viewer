@@ -3,15 +3,14 @@ import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
 import "/node_modules/react-grid-layout/css/styles.css";
 import "/node_modules/react-resizable/css/styles.css";
-import AnimeSearchButton from "./component/anime-search-button";
-import AnimeSearchPage from "./component/anime-search-page";
-import AnimeDisplay from "./component/anime-display";
+import AnimeSearchButton from "../components/anime/AnimeSearchButton";
+import AnimeDisplay from "../component/anime-display";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 export const ModalContext = React.createContext(null);
 
-export default class TestApp extends React.PureComponent {
+export default class Home extends React.PureComponent {
   static defaultProps = {
     className: "layout",
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
@@ -35,7 +34,7 @@ export default class TestApp extends React.PureComponent {
         };
       }),
       newCounter: 0,
-      openModal: false,
+
       id: null,
       ep: null,
     };
@@ -56,34 +55,20 @@ export default class TestApp extends React.PureComponent {
       <div
         key={i}
         data-grid={el}
-        className="flex items-center justify-center bg-pink-200"
+        className="flex items-center justify-center rounded-lg border-2 border-double border-fuchsia-500 bg-fuchsia-500/10 text-fuchsia-500
+        drop-shadow-2xl"
       >
-        <AnimeSearchButton
-          openAnimePage={() => {
-            console.log("clicked");
-            this.setState({ openModal: true });
-          }}
-        />
+        <AnimeSearchButton />
         {this.state.ep != null ? (
           <ModalContext.Provider value={{ clear }}>
             <AnimeDisplay animeId={this.state.id} animeEp={this.state.ep} />
           </ModalContext.Provider>
         ) : null}
         <button
-          className="absolute left-1 top-1 h-7 w-3 cursor-pointer rounded bg-red-400"
+          className="absolute left-1 top-1 h-7 w-3 cursor-pointer rounded border-2 border-double border-red-400 hover:bg-red-400"
           onClick={this.onRemoveItem.bind(this, i)}
           onTouchStart={this.onRemoveItem.bind(this, i)}
         ></button>
-        <button
-          onClick={() => {
-            console.log(this.state.id);
-            console.log(this.state.ep);
-            console.log(this.state.fixed);
-          }}
-          className="bg-red-600 "
-        >
-          id
-        </button>
       </div>
     );
   }
@@ -133,22 +118,12 @@ export default class TestApp extends React.PureComponent {
 
   clear() {
     this.setState({ id: null });
-    //this.setState({ ep: null });
+    this.setState({ ep: null });
   }
 
   render() {
-    const close = this.closeModal;
-    const animeId = this.getAnimeId;
-    const animeEp = this.getAnimeEp;
-
     return (
       <>
-        {this.state.openModal && (
-          <ModalContext.Provider value={{ close, animeId, animeEp }}>
-            <AnimeSearchPage id={this.state.id} />
-          </ModalContext.Provider>
-        )}
-
         <div>
           <div className="flex h-[10vh] items-center justify-center drop-shadow-lg">
             <button
