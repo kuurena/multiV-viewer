@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
-import AnimeCard from "../../components/anime/AnimeCard";
+import AnimeCard from "../../components/anime/AnimeCard.jsx";
 import Loading from "../../components/anime/loading";
 
 // loader function
@@ -51,41 +51,44 @@ function AnimeSearch() {
 
   return (
     <>
-      <div className="fixed z-10 flex h-screen w-screen items-center justify-center bg-purple-800">
-        <div className="h-[80%] w-[80%] flex-col justify-center overflow-y-auto bg-purple-400 ">
-          <form className="mb-2 flex justify-end pr-12 pt-5">
-            <input
-              type="text"
-              onChange={search}
-              placeholder="Search Anime"
-              className="rounded-lg "
-            />
-            <button
-              type="button"
-              className="ml-2 rounded-lg bg-red-300"
-              onClick={() => {
-                topAndRecent("top-airing");
-              }}
-            >
-              Top Airing
-            </button>
-            <button
-              type="button"
-              className="ml-2 rounded-lg bg-red-300"
-              onClick={() => {
-                topAndRecent("recent-episodes");
-              }}
-            >
-              Recent
-            </button>
-          </form>
-          <div className="relative flex h-fit w-full flex-wrap justify-center">
-            {animeData && !isLoading ? (
-              <AnimeCard updatedData={animeData} data={data} />
-            ) : (
-              <Loading />
-            )}
-          </div>
+      <div className="flex flex-col">
+        <div className="mb-12 mr-[10%] mt-12 flex h-[5%] justify-end">
+          <input
+            type="text"
+            onChange={search}
+            placeholder="Search Anime"
+            className="w-[20%] rounded-lg border-2 border-double border-fuchsia-500 bg-fuchsia-500/20 pl-4 text-fuchsia-500 placeholder-fuchsia-400 placeholder-opacity-50"
+          />
+          <button
+            type="button"
+            className="ml-4 h-8 w-28 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 drop-shadow-2xl
+             hover:bg-fuchsia-500 hover:text-fuchsia-100"
+            onClick={() => {
+              topAndRecent("top-airing");
+            }}
+          >
+            Top Airing
+          </button>
+          <button
+            type="button"
+            className="ml-4 h-8 w-28 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 drop-shadow-2xl
+             hover:bg-fuchsia-500 hover:text-fuchsia-100"
+            onClick={() => {
+              topAndRecent("recent-episodes");
+            }}
+          >
+            Recent
+          </button>
+        </div>
+        <div
+          className="  flex h-full w-[80%] flex-wrap justify-center self-center rounded-3xl bg-fuchsia-500/10 pt-10
+        text-fuchsia-500 shadow-2xl shadow-fuchsia-500 drop-shadow-2xl"
+        >
+          {animeData && !isLoading ? (
+            <AnimeCard updatedData={animeData} data={data} />
+          ) : (
+            <Loading />
+          )}
         </div>
       </div>
     </>
@@ -93,3 +96,5 @@ function AnimeSearch() {
 }
 
 export default AnimeSearch;
+
+//   relative ml-[5%] mr-[5%] h-full w-full

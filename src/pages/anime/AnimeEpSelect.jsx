@@ -1,61 +1,57 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AnimeEpButton from "./anime-ep-button";
+import AnimeEpButton from "../../components/anime/AnimeEpButton";
+import Loading from "../../components/anime/loading";
+import { useLoaderData, useParams } from "react-router";
 
-function AnimeEpSelect(props) {
-  const [animeEp, setAnimeEp] = useState([]);
-  const [image, setImage] = useState();
-  const [title, setTitle] = useState();
+function AnimeEpSelect() {
   const [isLoading, setIsLoading] = useState(false);
-  const animeId = props.animeId;
-
-  const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/info/${animeId}`;
-  useEffect(() => {
-    async function getEp() {
-      setIsLoading(true);
-      try {
-        const { data } = await axios.get(url);
-        setAnimeEp(data.episodes);
-        console.log(animeEp);
-        setImage(data.image);
-        setTitle(data.title);
-        setIsLoading(false);
-        return data;
-      } catch (err) {
-        throw new Error(err.message);
-      }
-    }
-    getEp();
-  }, [url]);
+  const { id } = useParams();
+  const animeEpData = useLoaderData();
 
   return (
-    <div className="fixed z-40 flex h-screen w-screen items-center justify-center bg-purple-800">
-      <div className="flex h-[80%] w-[80%] flex-row justify-end overflow-y-auto bg-purple-400 ">
-        {animeEp && !isLoading ? (
-          <>
-            <div>
-              <div className="w-[75%] bg-slate-200">
-                <img
-                  src={image}
-                  alt="image"
-                  className="h-full w-full object-contain"
-                />
-              </div>
-              <p>{title}</p>
+    <>
+      <div className="flex flex-col">
+        <div className="mb-12 mt-12 flex h-[5%] justify-center pl-4 pr-4 text-center text-fuchsia-500">
+          <p className="text-3xl">{animeEpData.title}</p>
+        </div>
+        <div
+          className="  flex h-full w-[80%] flex-wrap items-center justify-center self-center rounded-3xl bg-fuchsia-500/10 pb-10 pt-10
+        text-fuchsia-500 shadow-2xl shadow-fuchsia-500 drop-shadow-2xl"
+        >
+          <div className="flex justify-center ">
+            <div className=" mb-10 w-[75%] rounded-2xl ">
+              <img
+                src={animeEpData.image}
+                alt="image"
+                className=" rounded-2xl object-cover"
+              />
             </div>
-            <div className="flex w-[60%] flex-row flex-wrap justify-center">
-              <AnimeEpButton animeEp={animeEp} />
-            </div>
-          </>
-        ) : (
-          <div>
-            <p className="text-xl">Loading...</p>
           </div>
-        )}
+          <div className="flex h-80 w-[65%] flex-wrap justify-start overflow-auto">
+            <h1 className="mb-10 text-3xl">Episodes</h1>
+            <div className="flex flex-wrap ">
+              <AnimeEpButton animeEp={animeEpData.episodes} />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
 export default AnimeEpSelect;
+
+//loader function
+export const getEPLoader = async ({ params }) => {
+  const { id } = params;
+  try {
+    const { data } = await axios.get(
+      "https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/info/" + id
+    );
+    return data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};

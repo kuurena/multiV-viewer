@@ -1,22 +1,20 @@
 import React from "react";
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import "vidstack/styles/defaults.css";
 import { MediaOutlet, MediaPlayer } from "@vidstack/react";
-import { ModalContext } from "../testApp";
 
-function AnimeDisplay(props) {
+function AnimeDisplay({ id, ep }) {
   const [source, setSource] = useState("");
-  const { clear } = useContext(ModalContext);
 
-  const id = props.animeId;
-  const ep = props.animeEp;
-
-  const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/watch/${id}-episode-${ep}`;
+  const ID = id;
+  const EP = ep;
+  const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/watch/${ID}-episode-${EP}`;
 
   useEffect(() => {
     async function getData() {
       try {
+        console.log("getting anime");
         const { data } = await axios.get(url);
         return setSource(data.sources[3].url);
       } catch (err) {
@@ -24,7 +22,6 @@ function AnimeDisplay(props) {
       }
     }
     getData();
-    clear();
   }, []);
 
   return (

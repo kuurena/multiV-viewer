@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AnimeDisplay from "../../component/anime-display";
 
-function AnimeSearchButton() {
+function AnimeSearchButton({ animeEp, animeId }) {
+  //const saveId = JSON.parse(localStorage.getItem("anime_Id"));
+  //const saveEp = JSON.parse(localStorage.getItem("anime_Ep"));
+
   const [showButton, setShowButton] = useState(true);
+  //const [Id, setId] = useState(saveId);
+  //const [Ep, setEp] = useState(saveEp);
   const hide = () => {
-    setShowButton(!showButton);
+    if (animeEp && animeId != null) {
+      setShowButton(false);
+      console.log(animeId, animeEp, showButton);
+    } else {
+      null;
+    }
   };
+
+  /*useEffect(() => {
+    setId(animeId);
+    setEp(animeEp);
+    localStorage.setItem("anime_Id", JSON.stringify(Id));
+    localStorage.setItem("anime_Ep", JSON.stringify(Ep));
+  }, [Id, Ep]);*/
 
   return (
     <>
@@ -15,16 +33,15 @@ function AnimeSearchButton() {
               console.log("clicked");
               hide();
             }}
-            onTouchStart={() => {
-              console.log("clicked");
-              hide();
-            }}
             className="bg-fuchsia-300"
           >
-            anime
+            play
           </button>
         )}
       </div>
+      {showButton == false && animeEp != null ? (
+        <AnimeDisplay id={animeId} ep={animeEp} />
+      ) : null}
     </>
   );
 }

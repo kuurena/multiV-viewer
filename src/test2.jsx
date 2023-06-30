@@ -3,15 +3,14 @@ import { WidthProvider, Responsive } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import _ from "lodash";
-import { Link } from "react-router-dom";
 
-import AnimeSearchButton from "../components/anime/AnimeSearchButton";
+import AnimeSearchButton from "./components/anime/AnimeSearchButton";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS("layouts") || [];
-//const originalItems = getFromLS("items") || [];
+const originalItems = getFromLS("items") || [];
 
-const Home = (props) => {
+const DashboardSystemWithHooks = (props) => {
   const saveId = JSON.parse(localStorage.getItem("anime_Id"));
   const saveEp = JSON.parse(localStorage.getItem("anime_Ep"));
 
@@ -48,6 +47,7 @@ const Home = (props) => {
   }, [id, ep]);
 
   useEffect(() => {
+    console.log(`changed`);
     if (firstLoad.current) {
       console.log("hit");
       firstLoad.current = false;
@@ -131,11 +131,15 @@ const Home = (props) => {
         >
           ep1
         </button>
-        <Link to="/anime">
-          <button className="h-10 w-32 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 hover:bg-fuchsia-500 hover:text-fuchsia-100">
-            Anime
-          </button>
-        </Link>
+        <button
+          className="h-10 w-32 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500"
+          onClick={() => {
+            setId("spy-x-family");
+            setEp("2");
+          }}
+        >
+          ep2
+        </button>
       </div>
       <ResponsiveReactGridLayout
         className="layout"
@@ -177,109 +181,4 @@ function saveToLS(Lkey, Lvalue, Ikey, Ivalue, Xkey, Xvalue) {
   }
 }
 
-export default Home;
-
-/*import { WidthProvider, Responsive } from "react-grid-layout";
-import _ from "lodash";
-import "/node_modules/react-grid-layout/css/styles.css";
-import "/node_modules/react-resizable/css/styles.css";
-import AnimeSearchButton from "../components/anime/AnimeSearchButton";
-import AnimeDisplay from "../component/anime-display";
-import { useState } from "react";
-
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
-export default function Home() {
-  const [cols, setCols] = useState({ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 });
-
-  const [newCounter, setNewCounter] = useState(0);
-  const [id, setId] = useState(null);
-  const [ep, setEp] = useState(null);
-  const [item, setItem] = useState(
-    [].map(function (i, list) {
-      return {
-        i: i.toString(),
-        x: i * 2,
-        y: 0,
-        w: 5,
-        h: 3,
-
-        add: i === list.length - 1,
-      };
-    })
-  );
-
-  const createElement = (el) => {
-    const i = el.i;
-
-    return (
-      <div
-        key={i}
-        data-grid={el}
-        className="flex items-center justify-center rounded-lg border-2 border-double border-fuchsia-500 bg-fuchsia-500/10 text-fuchsia-500
-        drop-shadow-2xl"
-      >
-        <AnimeSearchButton />
-        {ep != null ? <AnimeDisplay animeId={id} animeEp={ep} /> : null}
-        <button
-          className="absolute left-1 top-1 h-7 w-3 cursor-pointer rounded border-2 border-double border-red-400 hover:bg-red-400"
-          onClick={() => onRemoveItem(i)}
-          onTouchStart={() => onRemoveItem(i)}
-        ></button>
-      </div>
-    );
-  };
-
-  const onAddItem = () => {
-    console.log("adding", "n" + newCounter);
-
-    setItem((item) => [
-      ...item,
-      {
-        i: "n" + newCounter,
-        x: (item.length * 2) % 1,
-        y: Infinity,
-        w: 5,
-        h: 3,
-      },
-    ]);
-    setNewCounter((newCounter) => newCounter + 1);
-  };
-
-  // We're using the cols coming back from this to calculate where to add new items.
-  const onBreakpointChange = (breakpoint, cols) => {
-    setCols(cols);
-  };
-
-  const onRemoveItem = (i) => {
-    console.log("removing", i);
-    setItem((item) => _.reject(item, { i: i }));
-  };
-
-  {
-    return (
-      <>
-        <div>
-          <div className="flex h-[10vh] items-center justify-center drop-shadow-lg">
-            <button
-              onClick={onAddItem}
-              className="h-10 w-32 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 drop-shadow-2xl
-               hover:scale-110 hover:bg-fuchsia-500 hover:text-fuchsia-100"
-            >
-              +
-            </button>
-          </div>
-          <ResponsiveReactGridLayout
-            className="layout"
-            rowHeight={100}
-            breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-            onBreakpointChange={onBreakpointChange}
-          >
-            {_.map(item, (el) => createElement(el))}
-          </ResponsiveReactGridLayout>
-        </div>
-      </>
-    );
-  }
-}
-*/
+export default DashboardSystemWithHooks;
