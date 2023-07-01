@@ -2,13 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AnimeEpButton from "../../components/anime/AnimeEpButton";
-import Loading from "../../components/anime/loading";
 import { useLoaderData, useParams } from "react-router";
 
 function AnimeEpSelect() {
-  const [isLoading, setIsLoading] = useState(false);
-  const { id } = useParams();
   const animeEpData = useLoaderData();
+  console.log(animeEpData);
 
   return (
     <>

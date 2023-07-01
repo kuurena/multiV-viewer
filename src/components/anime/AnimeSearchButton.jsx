@@ -1,28 +1,20 @@
 import { useState, useEffect } from "react";
-import AnimeDisplay from "../../component/anime-display";
+import AnimeDisplay from "./animeDisplay";
 
 function AnimeSearchButton({ animeEp, animeId }) {
-  //const saveId = JSON.parse(localStorage.getItem("anime_Id"));
-  //const saveEp = JSON.parse(localStorage.getItem("anime_Ep"));
-
   const [showButton, setShowButton] = useState(true);
-  //const [Id, setId] = useState(saveId);
-  //const [Ep, setEp] = useState(saveEp);
+
   const hide = () => {
     if (animeEp && animeId != null) {
       setShowButton(false);
-      console.log(animeId, animeEp, showButton);
     } else {
-      null;
+      return (
+        <div className="z-30 w-full text-slate-100">
+          <h2>Please select anime</h2>
+        </div>
+      );
     }
   };
-
-  /*useEffect(() => {
-    setId(animeId);
-    setEp(animeEp);
-    localStorage.setItem("anime_Id", JSON.stringify(Id));
-    localStorage.setItem("anime_Ep", JSON.stringify(Ep));
-  }, [Id, Ep]);*/
 
   return (
     <>
@@ -33,15 +25,14 @@ function AnimeSearchButton({ animeEp, animeId }) {
               console.log("clicked");
               hide();
             }}
-            className="bg-fuchsia-300"
+            className="rounded-lg border-2 border-fuchsia-500 pb-3 pl-5 pr-5 pt-3 text-center
+            text-fuchsia-500 hover:bg-fuchsia-500 hover:text-slate-100"
           >
             play
           </button>
         )}
       </div>
-      {showButton == false && animeEp != null ? (
-        <AnimeDisplay id={animeId} ep={animeEp} />
-      ) : null}
+      {showButton == false && animeEp != null ? <AnimeDisplay /> : null}
     </>
   );
 }

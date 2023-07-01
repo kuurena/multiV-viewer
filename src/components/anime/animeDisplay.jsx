@@ -3,13 +3,14 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import "vidstack/styles/defaults.css";
 import { MediaOutlet, MediaPlayer } from "@vidstack/react";
+import { useAnimeStore } from "../../store/animeStore";
 
-function AnimeDisplay({ id, ep }) {
+function AnimeDisplay() {
   const [source, setSource] = useState("");
+  const data = JSON.parse(localStorage.getItem("animeIDEP"));
+  const animeID = data.state.animeID;
 
-  const ID = id;
-  const EP = ep;
-  const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/watch/${ID}-episode-${EP}`;
+  const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/watch/${animeID}`;
 
   useEffect(() => {
     async function getData() {
@@ -25,7 +26,7 @@ function AnimeDisplay({ id, ep }) {
   }, []);
 
   return (
-    <div className="flex h-[90%] w-[90%] items-center justify-center">
+    <div className="flex h-[90%] w-[90%] items-start justify-center">
       <MediaPlayer title="Anime" src={source} controls>
         <MediaOutlet />
       </MediaPlayer>

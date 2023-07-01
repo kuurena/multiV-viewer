@@ -40,7 +40,6 @@ function AnimeSearch() {
       try {
         const { data } = await axios.get(url);
         setAnimeData(data.results);
-        console.log(animeData);
         setIsLoading(false);
       } catch (err) {
         throw new Error(err.message);
@@ -96,5 +95,3 @@ function AnimeSearch() {
 }
 
 export default AnimeSearch;
-
-//   relative ml-[5%] mr-[5%] h-full w-full

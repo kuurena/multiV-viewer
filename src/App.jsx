@@ -8,7 +8,7 @@ import {
 //pages
 import Home from "./pages/Home";
 import AnimeSearch, { animeSearchLoader } from "./pages/anime/AnimeSearch";
-import AnimeEpSelect, { getEPLoader } from "./pages/anime/animeEpSelect";
+import AnimeEpSelect, { getEPLoader } from "./pages/anime/AnimeEpSelect";
 
 //layouts
 import DefaultLayouts from "./layouts/defaultLayouts";
