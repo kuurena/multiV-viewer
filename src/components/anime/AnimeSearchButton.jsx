@@ -25,7 +25,7 @@ function AnimeSearchButton({ animeEp, animeId }) {
               console.log("clicked");
               hide();
             }}
-            ontouch={() => {
+            onTouchStart={() => {
               console.log("clicked");
               hide();
             }}

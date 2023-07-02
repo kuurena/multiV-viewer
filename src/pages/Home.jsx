@@ -135,13 +135,13 @@ const Home = (props) => {
         </Link>
       </div>
       <ResponsiveReactGridLayout
+        {...props}
         className="layout"
         rowHeight={100}
         layouts={{ breakpoints }}
         onLayoutChange={onLayoutChange}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         onBreakpointChange={onBreakpointChange}
-        {...props}
       >
         {_.map(items, (el) => createElement(el))}
       </ResponsiveReactGridLayout>

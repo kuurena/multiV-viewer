@@ -1,22 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
+
 import AnimeCard from "../../components/anime/AnimeCard.jsx";
 import Loading from "../../components/anime/loading";
 
 // loader function
-
-export const animeSearchLoader = async () => {
-  try {
-    const { data } = await axios.get(
-      "https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/recent-episodes"
-    );
-    console.log(data);
-    return data;
-  } catch (err) {
-    throw new Error(err.message);
-  }
-};
 
 function AnimeSearch() {
   const [animeData, setAnimeData] = useState([]);
@@ -24,7 +12,6 @@ function AnimeSearch() {
   const [animeName, setAnimeName] = useState("recent-episodes");
 
   const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/${animeName}`;
-  const data = useLoaderData();
 
   const search = (e) => {
     setAnimeName(e.target.value);
@@ -84,7 +71,7 @@ function AnimeSearch() {
         text-fuchsia-500 shadow-2xl shadow-fuchsia-500 drop-shadow-2xl"
         >
           {animeData && !isLoading ? (
-            <AnimeCard updatedData={animeData} data={data} />
+            <AnimeCard updatedData={animeData} />
           ) : (
             <Loading />
           )}
