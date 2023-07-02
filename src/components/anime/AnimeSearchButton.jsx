@@ -25,6 +25,10 @@ function AnimeSearchButton({ animeEp, animeId }) {
               console.log("clicked");
               hide();
             }}
+            ontouch={() => {
+              console.log("clicked");
+              hide();
+            }}
             className="rounded-lg border-2 border-fuchsia-500 pb-3 pl-5 pr-5 pt-3 text-center
             text-fuchsia-500 hover:bg-fuchsia-500 hover:text-slate-100"
           >
