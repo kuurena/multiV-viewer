@@ -7,7 +7,7 @@ import {
 
 //pages
 import Home from "./pages/Home";
-import AnimeSearch, { animeSearchLoader } from "./pages/anime/AnimeSearch";
+import AnimeSearch from "./pages/anime/AnimeSearch";
 import AnimeEpSelect, { getEPLoader } from "./pages/anime/AnimeEpSelect";
 
 //layouts
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
 
       <Route path="anime" element={<DefaultLayouts />}>
-        <Route index element={<AnimeSearch />} loader={animeSearchLoader} />
+        <Route index element={<AnimeSearch />} />
         <Route path=":id" element={<AnimeEpSelect />} loader={getEPLoader} />
       </Route>
     </Route>
