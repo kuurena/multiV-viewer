@@ -1,9 +1,9 @@
-import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "vidstack/styles/defaults.css";
 import { MediaOutlet, MediaPlayer } from "@vidstack/react";
-import { useAnimeStore } from "../../store/animeStore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AnimeDisplay() {
   const [source, setSource] = useState("");
@@ -19,6 +19,16 @@ function AnimeDisplay() {
         const { data } = await axios.get(url);
         return setSource(data.sources[3].url);
       } catch (err) {
+        toast.error("Couldn't find anime. Recheck name and ep.", {
+          position: "top-center",
+          autoClose: 10000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         throw new Error(err.message);
       }
     }
@@ -26,10 +36,22 @@ function AnimeDisplay() {
   }, []);
 
   return (
-    <div className="flex h-[90%] w-[90%] items-start justify-center">
+    <div className=" h-[90%] w-[90%]">
       <MediaPlayer title="Anime" src={source} controls>
         <MediaOutlet />
       </MediaPlayer>
+      <ToastContainer
+        position="top-center"
+        autoClose={10000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 }

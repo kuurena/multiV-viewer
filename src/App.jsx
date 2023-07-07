@@ -9,6 +9,8 @@ import {
 import Home from "./pages/Home";
 import AnimeSearch from "./pages/anime/AnimeSearch";
 import AnimeEpSelect, { getEPLoader } from "./pages/anime/AnimeEpSelect";
+import YoutubeSearch from "./pages/youtube/YoutubeSearch";
+import Error from "./pages/error";
 
 //layouts
 import DefaultLayouts from "./layouts/defaultLayouts";
@@ -22,6 +24,10 @@ const router = createBrowserRouter(
         <Route index element={<AnimeSearch />} />
         <Route path=":id" element={<AnimeEpSelect />} loader={getEPLoader} />
       </Route>
+
+      <Route path="youtube" element={<YoutubeSearch />} />
+
+      <Route path="*" element={<Error />} />
     </Route>
   )
 );
