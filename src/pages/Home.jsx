@@ -8,7 +8,7 @@ import { useAnimeStore } from "../store/animeStore";
 import { useYoutubeStore } from "../store/youtubeStore";
 
 import AnimePlayButton from "../components/anime/AnimePlayButton";
-import VideoSelect from "../components/videoSelect";
+import VideoSelect from "../components/VideoSelect";
 import Tooltip from "../components/Tooltip";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
