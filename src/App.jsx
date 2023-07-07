@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import AnimeSearch from "./pages/anime/AnimeSearch";
 import AnimeEpSelect, { getEPLoader } from "./pages/anime/AnimeEpSelect";
 import YoutubeSearch from "./pages/youtube/YoutubeSearch";
-import Error from "./pages/error";
+import Error from "./pages/pageError";
 
 //layouts
 import DefaultLayouts from "./layouts/defaultLayouts";
