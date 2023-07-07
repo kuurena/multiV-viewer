@@ -10,7 +10,6 @@ import Home from "./pages/Home";
 import AnimeSearch from "./pages/anime/AnimeSearch";
 import AnimeEpSelect, { getEPLoader } from "./pages/anime/AnimeEpSelect";
 import YoutubeSearch from "./pages/youtube/YoutubeSearch";
-import Error from "./pages/pageError";
 
 //layouts
 import DefaultLayouts from "./layouts/defaultLayouts";
@@ -26,8 +25,6 @@ const router = createBrowserRouter(
       </Route>
 
       <Route path="youtube" element={<YoutubeSearch />} />
-
-      <Route path="*" element={<Error />} />
     </Route>
   )
 );
