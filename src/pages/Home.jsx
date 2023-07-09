@@ -87,7 +87,6 @@ const Home = (props) => {
   };
 
   const onAddItem = () => {
-    /*eslint no-console: 0*/
     console.log("adding", "n" + items.length + 1);
     const addToCount = count + 1;
     setCount(addToCount);
@@ -105,29 +104,33 @@ const Home = (props) => {
 
   const onRemoveItem = (i) => {
     console.log("removing", i);
+    const removeCount = count - 1;
+    setCount(removeCount);
     setItems((items) => _.reject(items, { i: i }));
   };
 
   return (
-    <div>
-      <div className="flex h-[10vh] items-center justify-start p-5 drop-shadow-lg">
-        <div className=" mr-10 w-[40%] text-fuchsia-500">
+    <>
+      <div className=" flex flex-wrap items-center justify-start gap-y-2 p-5 sm:justify-center lg:justify-start">
+        <div className=" mr-10 w-[90%] text-fuchsia-500 lg:w-[40%]">
           <div className="flex">
             <div className="mr-2">Anime: </div>
-            <div className="overflow-hidden whitespace-nowrap rounded-lg ">
+            <div className="overflow-hidden whitespace-nowrap rounded-lg">
               <div className="animate-slide">{animeID.replace(/-/g, " ")}</div>
             </div>
           </div>
           <div className="flex">
             <div className="mr-2">YT: </div>
             <div className="overflow-hidden whitespace-nowrap rounded-lg ">
-              <div className="animate-slide">{title}</div>
+              <div className="animate-slide">
+                {title == "" ? videoID : title}
+              </div>
             </div>
           </div>
         </div>
         <button
           onClick={onAddItem}
-          className="mr-5 h-10 w-32 border-spacing-2 animate-pulse rounded-lg border-2 border-double border-fuchsia-500
+          className=" mr-5 h-10 w-32 border-spacing-2 animate-pulse rounded-lg border-2 border-double border-fuchsia-500
                text-fuchsia-500 drop-shadow-2xl hover:scale-110 hover:bg-fuchsia-500 hover:text-fuchsia-100"
         >
           +
@@ -156,8 +159,8 @@ const Home = (props) => {
       >
         {_.map(items, (el) => createElement(el))}
       </ResponsiveReactGridLayout>
-      <Tooltip />
-    </div>
+      <Tooltip count={count} />
+    </>
   );
 };
 
@@ -187,108 +190,3 @@ function saveToLS(Lkey, Lvalue, Ikey, Ivalue, Xkey, Xvalue) {
 }
 
 export default Home;
-
-/*import { WidthProvider, Responsive } from "react-grid-layout";
-import _ from "lodash";
-import "/node_modules/react-grid-layout/css/styles.css";
-import "/node_modules/react-resizable/css/styles.css";
-import AnimeSearchButton from "../components/anime/AnimeSearchButton";
-import AnimeDisplay from "../component/anime-display";
-import { useState } from "react";
-
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
-export default function Home() {
-  const [cols, setCols] = useState({ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 });
-
-  const [newCounter, setNewCounter] = useState(0);
-  const [id, setId] = useState(null);
-  const [ep, setEp] = useState(null);
-  const [item, setItem] = useState(
-    [].map(function (i, list) {
-      return {
-        i: i.toString(),
-        x: i * 2,
-        y: 0,
-        w: 5,
-        h: 3,
-
-        add: i === list.length - 1,
-      };
-    })
-  );
-
-  const createElement = (el) => {
-    const i = el.i;
-
-    return (
-      <div
-        key={i}
-        data-grid={el}
-        className="flex items-center justify-center rounded-lg border-2 border-double border-fuchsia-500 bg-fuchsia-500/10 text-fuchsia-500
-        drop-shadow-2xl"
-      >
-        <AnimeSearchButton />
-        {ep != null ? <AnimeDisplay animeId={id} animeEp={ep} /> : null}
-        <button
-          className="absolute left-1 top-1 h-7 w-3 cursor-pointer rounded border-2 border-double border-red-400 hover:bg-red-400"
-          onClick={() => onRemoveItem(i)}
-          onTouchStart={() => onRemoveItem(i)}
-        ></button>
-      </div>
-    );
-  };
-
-  const onAddItem = () => {
-    console.log("adding", "n" + newCounter);
-
-    setItem((item) => [
-      ...item,
-      {
-        i: "n" + newCounter,
-        x: (item.length * 2) % 1,
-        y: Infinity,
-        w: 5,
-        h: 3,
-      },
-    ]);
-    setNewCounter((newCounter) => newCounter + 1);
-  };
-
-  // We're using the cols coming back from this to calculate where to add new items.
-  const onBreakpointChange = (breakpoint, cols) => {
-    setCols(cols);
-  };
-
-  const onRemoveItem = (i) => {
-    console.log("removing", i);
-    setItem((item) => _.reject(item, { i: i }));
-  };
-
-  {
-    return (
-      <>
-        <div>
-          <div className="flex h-[10vh] items-center justify-center drop-shadow-lg">
-            <button
-              onClick={onAddItem}
-              className="h-10 w-32 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 drop-shadow-2xl
-               hover:scale-110 hover:bg-fuchsia-500 hover:text-fuchsia-100"
-            >
-              +
-            </button>
-          </div>
-          <ResponsiveReactGridLayout
-            className="layout"
-            rowHeight={100}
-            breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-            onBreakpointChange={onBreakpointChange}
-          >
-            {_.map(item, (el) => createElement(el))}
-          </ResponsiveReactGridLayout>
-        </div>
-      </>
-    );
-  }
-}
-*/

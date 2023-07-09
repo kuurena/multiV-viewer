@@ -1,6 +1,11 @@
+import { useEffect, useState } from "react";
+
 export default function YoutubeDisplay() {
-  const data = JSON.parse(localStorage.getItem("youtubeVideoID"));
-  const ytID = data.state.videoID;
+  const [ytID, setYtID] = useState(null);
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("youtubeVideoID"));
+    setYtID(data.state.videoID);
+  }, []);
 
   return (
     <div className=" h-[90%] w-[90%] overflow-hidden">

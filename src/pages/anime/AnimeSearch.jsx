@@ -43,12 +43,12 @@ function AnimeSearch() {
             type="text"
             onChange={search}
             placeholder="Search Anime"
-            className="w-[20%] rounded-lg border-2 border-double border-fuchsia-500 bg-fuchsia-500/20 pl-4 text-fuchsia-500 placeholder-fuchsia-400 placeholder-opacity-50"
+            className="ml-4 w-2/5 rounded-lg border-2 border-double border-fuchsia-500 bg-fuchsia-500/20 pl-4 text-xs text-fuchsia-500 placeholder-fuchsia-400 placeholder-opacity-50 sm:w-64 sm:text-base"
           />
           <button
             type="button"
-            className="ml-4 h-8 w-28 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 drop-shadow-2xl
-             hover:bg-fuchsia-500 hover:text-fuchsia-100"
+            className="ml-4 h-8 w-1/5 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-xs text-fuchsia-500 drop-shadow-2xl hover:bg-fuchsia-500 hover:text-fuchsia-100
+             sm:w-28 sm:text-base"
             onClick={() => {
               topAndRecent("top-airing");
             }}
@@ -57,8 +57,8 @@ function AnimeSearch() {
           </button>
           <button
             type="button"
-            className="ml-4 h-8 w-28 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 drop-shadow-2xl
-             hover:bg-fuchsia-500 hover:text-fuchsia-100"
+            className="ml-4 h-8 w-1/5 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-xs text-fuchsia-500 drop-shadow-2xl hover:bg-fuchsia-500 hover:text-fuchsia-100
+             sm:w-28 sm:text-base"
             onClick={() => {
               topAndRecent("recent-episodes");
             }}

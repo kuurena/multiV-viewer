@@ -25,7 +25,9 @@ function YoutubeSearch() {
       : setChannelIDInput("");
   };
 
-  const search = () => {
+  const search = (e) => {
+    e.preventDefault();
+    console.log("submit");
     setChannelID(channelIDInput);
     const word = keyWordInput;
     setKeyWord(word.replace(/\s/g, "%20"));
@@ -49,7 +51,10 @@ function YoutubeSearch() {
   return (
     <div className="flex h-screen flex-col">
       <div className="pb-10 pl-[10%] pr-[10%] pt-10">
-        <div className="flex h-full w-full flex-col rounded-lg bg-fuchsia-500/25 p-4">
+        <form
+          className="flex h-full w-full flex-col rounded-lg bg-fuchsia-500/25 p-4"
+          onSubmit={search}
+        >
           <div className="mb-3 flex justify-start">
             <input
               type="text"
@@ -66,7 +71,7 @@ function YoutubeSearch() {
           </div>
           <div className="flex justify-end">
             <button
-              onClick={search}
+              type="submit"
               className="flex h-12 w-12 items-center justify-center rounded-[50%] border-2 border-double border-fuchsia-500 bg-fuchsia-500/20 hover:bg-fuchsia-500/40"
             >
               <svg
@@ -79,13 +84,13 @@ function YoutubeSearch() {
               </svg>
             </button>
           </div>
-        </div>
+        </form>
       </div>
       <div className="flex flex-wrap justify-evenly pl-[7%] pr-[7%] text-fuchsia-500 ">
         {(keyWord || channelID != "") && !isLoading ? (
           <YoutubeVideoSelect youtubeData={youtubeData} />
         ) : (
-          <div className="animate-pulse text-fuchsia-500/60">
+          <div className="animate-pulse text-center text-fuchsia-500/60">
             Enter keyword or channel ID then click search
           </div>
         )}
