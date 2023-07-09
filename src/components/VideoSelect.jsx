@@ -37,7 +37,7 @@ export default function VideoSelect() {
   return (
     <div>
       <form
-        className="mb-5 flex flex-wrap gap-y-2 pl-4 sm:justify-center"
+        className="mb-5 flex flex-wrap gap-y-2 pl-4 sm:justify-center lg:justify-start"
         onSubmit={buttonClick}
       >
         <input
