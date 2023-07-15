@@ -15,7 +15,10 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS("layouts") || [];
 
 const Home = (props) => {
-  const [animeID] = useAnimeStore((state) => [state.animeID]);
+  const [animeID, changeAnimeID] = useAnimeStore((state) => [
+    state.animeID,
+    state.changeAnimeID,
+  ]);
 
   const [title, videoID] = useYoutubeStore((state) => [
     state.title,
@@ -109,6 +112,12 @@ const Home = (props) => {
     setItems((items) => _.reject(items, { i: i }));
   };
 
+  const nextEP = () => {
+    const newID = animeID.slice(0, -1) + `${Number(animeID.slice(-1)) + 1}`;
+    changeAnimeID(newID);
+    location.reload();
+  };
+
   return (
     <>
       <div className=" flex flex-wrap items-center justify-start gap-y-2 p-5 sm:justify-center lg:justify-start">
@@ -142,10 +151,17 @@ const Home = (props) => {
           </button>
         </Link>
         <Link to="/youtube">
-          <button className="h-10 w-32 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 hover:bg-fuchsia-500 hover:text-fuchsia-100">
+          <button className="mr-1 h-10 w-32 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 hover:bg-fuchsia-500 hover:text-fuchsia-100">
             Youtube
           </button>
         </Link>
+        <button
+          onClick={nextEP}
+          onTouchStart={nextEP}
+          className="h-10 w-32 border-spacing-2 rounded-lg border-2 border-double border-fuchsia-500 text-fuchsia-500 hover:bg-fuchsia-500 hover:text-fuchsia-100"
+        >
+          NextEp{" "}
+        </button>
       </div>
       <VideoSelect />
       <ResponsiveReactGridLayout
