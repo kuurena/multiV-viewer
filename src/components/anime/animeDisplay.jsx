@@ -10,13 +10,14 @@ function AnimeDisplay() {
   const data = JSON.parse(localStorage.getItem("animeIDEP"));
   const animeID = data.state.animeID;
 
-  const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/watch/${animeID}`;
+  const url = `https://api.consumet.org/anime/gogoanime/watch/${animeID}`;
 
   useEffect(() => {
     async function getData() {
       try {
         console.log("getting anime");
         const { data } = await axios.get(url);
+
         return setSource(data.sources[3].url);
       } catch (err) {
         toast.error("Couldn't find anime. Recheck name and ep.", {
