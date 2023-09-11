@@ -3,7 +3,7 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/kuurena/multiV-viewer">
+  <a href="https://multi-v-viewer.vercel.app/">
     <img src="public/vite.svg" alt="Logo" width="80" height="80">
   </a>
 
@@ -26,7 +26,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/kuurena/multiV-viewer)
+[![Product Name Screen Shot][product-screenshot]](https://multi-v-viewer.vercel.app/)
 
 Multi-V-viewer is a personal project which lets you simultaneously view a YouTube video and anime, offering flexibility in adjusting layout and video sizes.
 It uses the YouTube API for video search and display. As well as integrates the Consumet API to fetch and display anime.
