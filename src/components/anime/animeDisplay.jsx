@@ -10,7 +10,7 @@ function AnimeDisplay() {
   const data = JSON.parse(localStorage.getItem("animeIDEP"));
   const animeID = data.state.animeID;
 
-  const url = `https://consumet2-8sdq2e5fi-kuurena.vercel.app/anime/gogoanime/watch/${animeID}`;
+  const url = `https://consumet-api-rose.vercel.app/anime/gogoanime/watch/${animeID}`;
 
   useEffect(() => {
     async function getData() {

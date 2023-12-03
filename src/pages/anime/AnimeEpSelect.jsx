@@ -46,7 +46,7 @@ export const getEPLoader = async ({ params }) => {
   const { id } = params;
   try {
     const { data } = await axios.get(
-      "https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/info/" + id
+      "https://consumet-api-rose.vercel.app/anime/gogoanime/info/" + id
     );
     return data;
   } catch (err) {

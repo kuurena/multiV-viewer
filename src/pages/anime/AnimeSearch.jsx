@@ -11,7 +11,7 @@ function AnimeSearch() {
   const [isLoading, setIsLoading] = useState(false);
   const [animeName, setAnimeName] = useState("recent-episodes");
 
-  const url = `https://consumet-cyrlcx779-kuurena.vercel.app/anime/gogoanime/${animeName}`;
+  const url = `https://consumet-api-rose.vercel.app/anime/gogoanime/${animeName}`;
 
   const search = (e) => {
     setAnimeName(e.target.value);
@@ -28,6 +28,7 @@ function AnimeSearch() {
         const { data } = await axios.get(url);
         setAnimeData(data.results);
         setIsLoading(false);
+        console.log(data);
       } catch (err) {
         throw new Error(err.message);
       }
